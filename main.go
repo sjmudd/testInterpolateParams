@@ -1,5 +1,24 @@
 package main
 
+/*
+
+See: https://bugs.mysql.com/bug.php?id=101630
+
+Test with
+
+$ ./testInterpolateParams interpolate 2>&1 | less
+$ ./testInterpolateParams 2>&1 | less
+
+Tests as of 17/11/2020 show the go driver works properly.
+
+An error is triggered with > 64k rows without the interpolateParams
+setting and works fine with it set.
+
+Requires a mysql server running on 127.0.0.1:3306 with user root
+and password root.
+
+*/
+
 import (
 	"database/sql"
 	"log"
